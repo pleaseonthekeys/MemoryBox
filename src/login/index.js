@@ -33,6 +33,7 @@ export class Login extends Component {
     const birthdayRange = () => {
       this.birthdayResults();
       this.setRange();
+      this.props.getSongs();
     };
     birthdayRange();
   }
@@ -66,7 +67,6 @@ export class Login extends Component {
           <input type="submit" />
         </form>
         <p>Displaying songs ranging from {this.birthdayResults()}</p>
-        <p>Displaying songs from years {this.state.yearRange.join(" ")}</p>
       </div>
     );
   }
