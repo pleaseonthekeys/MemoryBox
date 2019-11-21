@@ -29,6 +29,40 @@ ON m.memory_key = sm.memory_key`;
         res.send(result);
       }
     });
+  },
+  postMemory: (req, res) => {
+    let newMemory = {
+      memory_key: req.body.memory_key,
+      memory: req.body.memory
+    };
+    let songMemJoin = {
+      song_id: req.body.songId
+    };
+    let params = [
+      newMemory.memory_key,
+      newMemory.memory,
+      songMemJoin.song_id,
+      newMemory.memory_key
+    ];
+    let sql = `INSERT INTO memories (memory_key, memory) VALUES(?, ?);`;
+    db.query(sql, params, (err, result) => {
+      if (err) {
+        console.log("error posting new Memory", err);
+        res.sendStatus(500);
+      } else {
+        res.status(201);
+      }
+    });
+    let params2 = [songMemJoin.song_id, newMemory.memory_key];
+    let sql2 = `INSERT INTO song_memory (song_id, memory_key) VALUES(?, ?);`;
+    db.query(sql2, params2, (err, result) => {
+      if (err) {
+        console.log("error posting new Memory to join table", err);
+        res.sendStatus(500);
+      } else {
+        res.status(201).send(result);
+      }
+    });
   }
 };
 

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Memories from "../memories";
 
 export class Songs extends Component {
   constructor(props) {
@@ -30,6 +31,13 @@ export class Songs extends Component {
                 by: {song.artist}{" "}
                 <a href={song.youtube_url}>Listen now on YouTube!</a>
               </p>
+              <Memories
+                getMemories={this.props.getMemories}
+                currentSongId={song ? song.id : 1}
+                writeMemory={this.props.writeMemory}
+                memories={this.props.memories}
+                onSongClick={this.onSongClick}
+              />
             </div>
           );
         })}
