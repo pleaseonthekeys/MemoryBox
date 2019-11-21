@@ -25,7 +25,7 @@ memory_key VARCHAR(20) NOT NULL,
 PRIMARY KEY(song_id, memory_key)
 );
 
-INSERT INTO memories (memory_key, memory) VALUES('I aint got you','this song reminds me of when I was at Hack Reactor. Every time I sang a little bit of it, Danny had to stop everything he was doing to finish singing that line of that.');
+INSERT INTO memories (memory_key, memory) VALUES('I aint got you','gotchya, Danny!');
 INSERT INTO memories (memory_key, memory) VALUES('karaoke','there was this woman who did an aweful job singing this song at the Boardwalk Bowl Karaoke in Santa Cruz');
 INSERT INTO memories (memory_key, memory) VALUES('Jill','My Best friend from high school used to go crazy singing this song while she was driving');
 INSERT INTO memories (memory_key, memory) VALUES('Karen','I remember being at a basement party with one of my oldest friends, Karen, singing to this song and cracking up');
