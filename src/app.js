@@ -19,7 +19,6 @@ class App extends React.Component {
   getSongs() {
     return axios.get("/songs").then(({ data }) => {
       this.setState({ songs: data });
-      console.log({ songData: data });
     });
   }
 
@@ -27,11 +26,22 @@ class App extends React.Component {
   //   this.getMemories(songId);
   // }
 
-  getMemories() {
-    return axios.get(`/memories/`).then(({ data }) => {
-      console.log({ memories: data }, { songId: songId });
-      this.setState({ memories: data });
-    });
+  getMemories(songId) {
+    let currentSongId = songId;
+    return axios
+      .get(`/memories`)
+      .then(({ data }) => {
+        let eachSongMem = [];
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].id === currentSongId) {
+            eachSongMem.push(data[i].memory);
+          }
+        }
+        this.setState({ memories: eachSongMem });
+      })
+      .then(() => {
+        console.log(this.state.memories);
+      });
   }
 
   writeMemory(memory) {
@@ -42,11 +52,7 @@ class App extends React.Component {
     return (
       <>
         <Login songs={this.state.songs} getSongs={this.getSongs} />
-        <Songs
-          songs={this.state.songs}
-          onSongClick={this.onSongClick}
-          getMemories={this.getMemories}
-        />
+        <Songs songs={this.state.songs} getMemories={this.getMemories} />
         <Memories
           writeMemory={this.writeMemory}
           getMemories={this.getMemories}
