@@ -27,7 +27,7 @@ var connection = mysql.createConnection(
   "mysql://bb9287dba574c6:c37795ee@us-cdbr-iron-east-05.cleardb.net/heroku_40b468769343705?reconnect=true"
 );
 
-connection.connect(err => {
+var db = connection.connect(err => {
   if (err) {
     console.log("unable to connect to mysql", err);
   } else {
