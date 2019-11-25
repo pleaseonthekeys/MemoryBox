@@ -3,7 +3,7 @@ const app = express();
 const parser = require("body-parser");
 const port = process.environment || 8000;
 
-const SongRouter = require("./routes.js");
+const SongRouter = require("./server/routes.js");
 
 app.use(parser.json());
 app.use(express.static("dist"));

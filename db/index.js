@@ -1,7 +1,7 @@
 const mysql = require("mysql");
 
 const connection = mysql.createConnection({
-  user: "root",
+  user: "laurenalbert",
   database: "memoryBox"
 });
 

@@ -8,8 +8,8 @@
     "clean": "rm dist/bundle.js",
     "build-dev": "webpack -d --watch --mode development",
     "build-prod": "webpack -p --watch --mode production",
-    "server-dev": "nodemon server/index.js",
-    "start": "node server/index.js"
+    "server-dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
