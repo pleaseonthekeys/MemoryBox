@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const parser = require("body-parser");
-const port = process.environment || 8000;
+// const port = process.environment || 8000;
 
 const SongRouter = require("./server/routes.js");
 
