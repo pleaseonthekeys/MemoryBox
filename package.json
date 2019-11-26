@@ -9,7 +9,7 @@
     "build-dev": "webpack -d --watch --mode development",
     "build-prod": "webpack -p --watch --mode production",
     "server-dev": "nodemon index.js",
-    "start": "npm run server-dev && node index.js"
+    "start": "npm run build-dev && node index.js"
   },
   "keywords": [],
   "author": "",
