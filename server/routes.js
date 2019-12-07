@@ -1,6 +1,10 @@
 const express = require("express");
 
-const { getSongs, getMemories, postMemory } = require("./controllers");
+const {
+  getSongs,
+  getMemories,
+  postMemory,
+} = require("./controllers");
 
 const SongRouter = express.Router();
 

@@ -38,29 +38,30 @@ ON m.memory_key = sm.memory_key`;
     let songMemJoin = {
       song_id: req.body.songId
     };
-    let params = [
+    let newMemParams = [
       newMemory.memory_key,
       newMemory.memory,
       songMemJoin.song_id,
       newMemory.memory_key
     ];
-    let sql = `INSERT INTO memories (memory_key, memory) VALUES(?, ?);`;
-    db.query(sql, params, (err, result) => {
+    let joinMemParams = [songMemJoin.song_id, newMemory.memory_key];
+
+    let makeMemory = `INSERT INTO memories (memory_key, memory) VALUES(?, ?);`;
+    let joinMemandSong = `INSERT INTO song_memory (song_id, memory_key) VALUES(?, ?);`;
+
+    db.query(makeMemory, newMemParams, (err, result) => {
       if (err) {
         console.log("error posting new Memory", err);
-        res.sendStatus(500);
+        return res.status(500).send("Could not create a new memory");
       } else {
-        res.status(201);
-      }
-    });
-    let params2 = [songMemJoin.song_id, newMemory.memory_key];
-    let sql2 = `INSERT INTO song_memory (song_id, memory_key) VALUES(?, ?);`;
-    db.query(sql2, params2, (err, result) => {
-      if (err) {
-        console.log("error posting new Memory to join table", err);
-        res.sendStatus(500);
-      } else {
-        res.status(201).send(result);
+        db.query(joinMemandSong, joinMemParams, (err, result) => {
+          if (err) {
+            console.log("error posting new Memory to join table", err);
+            return res.status(500).send("Could not create a new memory");
+          } else {
+            return res.status(201).send(result);
+          }
+        });
       }
     });
   }
